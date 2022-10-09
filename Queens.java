@@ -234,10 +234,6 @@ public class Queens
 
         }
 
-
-        // DUMMY CODE TO REMOVE:
-//        children[0] = new Integer[]{5, 4, 2, 11, 6, 8, 9, 1, 10, 12, 7, 3};
-//        children[1] = new Integer[]{6, 12, 2, 5, 7, 3, 9, 1, 10, 4, 11, 8};
         // END OF YOUR CODE
 
         return children;
@@ -255,10 +251,39 @@ public class Queens
          * For a 12x12 board the maximum fitness is 66 (no checks),
          * and the minimum fitness is 0 (all queens in a line).
          */
+        
         int fitness = (int) (0.5 * boardSize * (boardSize - 1));
 
         // YOUR CODE GOES HERE
 
+        int threats = 0;
+
+        // for horizontal & vertical threats
+        Set<Integer> set = new LinkedHashSet<Integer>(Arrays.asList(genotype));
+        Object[] genotypeNoDuplicates = set.toArray();
+        int horizontalVerticalThreats = Math.abs((genotype.length) - (genotypeNoDuplicates.length));
+        threats += horizontalVerticalThreats;
+
+        // for diagonal threats
+        for (int x = 0; x < genotype.length; x++)
+        {
+            for (int y = 0; y < genotype.length; y++)
+            {
+                if (x != y)
+                {
+                    int d1 = Math.abs(x - y);
+                    int d2 = Math.abs(genotype[x] - genotype[y]);
+
+                    if (d1 == d2)
+                    {
+                        threats++;
+                    }
+                }
+            }
+
+        }
+
+        fitness = 66 - (threats / 2);
         return fitness;
     }
 }
