@@ -16,47 +16,47 @@ public class Tester
     {
         Integer[] geno = new Integer[boardSize];
 
-//        // test 1: create 10 random genotypes
-//        System.out.println("1. Testing Random Genotype Creator: ");
-//        for (int count = 0; count < 10; count ++)
-//        {
-//            geno = Queens.createGeno();
-//            printGenotype( geno);
-//        }
+        // test 1: create 10 random genotypes
+        System.out.println("1. Testing Random Genotype Creator: ");
+        for (int count = 0; count < 10; count++)
+        {
+            geno = Queens.createGeno();
+            printGenotype(geno);
+        }
 
-//        // test 2: try to mutate a genotype 10 times in succession, with 80% chance
-//        double rate = 0.8;
-//        geno = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-//        System.out.println("\n2. Testing Mutation:\nOriginal:");
-//        printGenotype(geno);
-//        System.out.println("Mutations:");
-//        for (int count = 0; count < 10; count++)
-//        {
-//            geno = Queens.insertionMutate(geno, rate);
-//            printGenotype(geno);
-//        }
+        // test 2: try to mutate a genotype 10 times in succession, with 80% chance
+        double rate = 0.8;
+        geno = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        System.out.println("\n2. Testing Mutation:\nOriginal:");
+        printGenotype(geno);
+        System.out.println("Mutations:");
+        for (int count = 0; count < 10; count++)
+        {
+            geno = Queens.insertionMutate(geno, rate);
+            printGenotype(geno);
+        }
 
-//        // test 3: perform recombination to create 2 new children
-//        Integer[] parent1 = new Integer[]{5, 4, 2, 11, 6, 8, 12, 9, 3, 1, 7, 10};
-//        Integer[] parent2 = new Integer[]{6, 12, 2, 5, 7, 3, 9, 1, 10, 4, 11, 8};
-//        System.out.println("\n3. Testing Crossover:\nParents:");
-//        printGenotype(parent1);
-//        printGenotype(parent2);
-//
-//        Integer[][] children = Queens.crossover(parent1, parent2);
-//        Integer[] correct1 = new Integer[]{5, 4, 2, 11, 6, 8, 9, 1, 10, 12, 7, 3};
-//        Integer[] correct2 = new Integer[]{6, 12, 2, 5, 7, 3, 9, 1, 10, 4, 11, 8};
-//
-//        System.out.print("\nChild 1:\nExpected: ");
-//        printGenotype(correct1);
-//        System.out.print("Produced: ");
-//        printGenotype(children[0]);
-//
-//
-//        System.out.print("\nChild 2:\nExpected: ");
-//        printGenotype(correct2);
-//        System.out.print("Produced: ");
-//        printGenotype(children[1]);
+        // test 3: perform recombination to create 2 new children
+        Integer[] parent1 = new Integer[]{5, 4, 2, 11, 6, 8, 12, 9, 3, 1, 7, 10};
+        Integer[] parent2 = new Integer[]{6, 12, 2, 5, 7, 3, 9, 1, 10, 4, 11, 8};
+        System.out.println("\n3. Testing Crossover:\nParents:");
+        printGenotype(parent1);
+        printGenotype(parent2);
+
+        Integer[][] children = Queens.crossover(parent1, parent2);
+        Integer[] correct1 = new Integer[]{5, 4, 2, 11, 6, 8, 9, 1, 10, 12, 7, 3};
+        Integer[] correct2 = new Integer[]{6, 12, 2, 5, 7, 3, 9, 1, 10, 4, 11, 8};
+
+        System.out.print("\nChild 1:\nExpected: ");
+        printGenotype(correct1);
+        System.out.print("Produced: ");
+        printGenotype(children[0]);
+
+
+        System.out.print("\nChild 2:\nExpected: ");
+        printGenotype(correct2);
+        System.out.print("Produced: ");
+        printGenotype(children[1]);
 
         // test 4: measure the fitness of a set of individuals
         Integer[][] genos = new Integer[5][10];
