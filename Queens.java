@@ -50,18 +50,11 @@ public class Queens
         // Returns a random integer from 0 to 9:
         int random = (int) Math.floor(Math.random() * 10);
 
-        //
         String[] hat = new String[]{"cat", "cat", "rabbit", "cat", "cat", "cat", "cat", "cat", "rabbit", "cat"};
-
-//        System.out.println(random);
-//        System.out.println(genotype);
 
         //mutation takes place when random number is from 0 to 8 inclusive (80% probability)
         if (hat[random].equals("cat"))
         {
-//            System.out.println("=============MUTATION BEGIN==================");
-//            Tester.printGenotype(genotype);
-
             int lowIndex;
             int highIndex;
 
@@ -95,9 +88,6 @@ public class Queens
                 lowIndex = secondAlleleIndex;
                 highIndex = firstAlleleIndex;
             }
-//            System.out.println("Lower Index:" + lowIndex);
-//            System.out.println("Higher Index:" + highIndex);
-
 
             //loop n-times where n = (tempArray.length - (lowIndex+1)) to shift all elements after lowIndex to right.
             //element right after lowIndex is = to element at lowIndex
@@ -127,13 +117,6 @@ public class Queens
             {
                 genotype[i] = tempArray[i];
             }
-
-//            Tester.printGenotype(genotype);
-//            System.out.println("==============MUTATION COMPLETE=============");
-        }
-        else
-        {
-            System.out.println("===============NO MUTATION====================");
         }
 
         // END OF YOUR CODE
@@ -150,10 +133,6 @@ public class Queens
         // fill children genotypes with the same values from their parents before the crossover point (6)
         System.arraycopy(parent0, 0, children[0], 0, 6);
         System.arraycopy(parent1, 0, children[1], 0, 6);
-
-        System.out.println("Children before crossing");
-        Tester.printGenotype(children[0]);
-        Tester.printGenotype(children[1]);
 
         // For First Child
         int valueAlreadyInChild0 = 0;
@@ -231,7 +210,6 @@ public class Queens
                     }
                 }
             }
-
         }
 
         // END OF YOUR CODE
@@ -251,7 +229,7 @@ public class Queens
          * For a 12x12 board the maximum fitness is 66 (no checks),
          * and the minimum fitness is 0 (all queens in a line).
          */
-        
+
         int fitness = (int) (0.5 * boardSize * (boardSize - 1));
 
         // YOUR CODE GOES HERE
@@ -280,7 +258,6 @@ public class Queens
                     }
                 }
             }
-
         }
 
         fitness = 66 - (threats / 2);
