@@ -47,13 +47,12 @@ public class Queens
     {
         // YOUR CODE GOES HERE
 
-        // Returns a random integer from 0 to 9:
-        int random = (int) Math.floor(Math.random() * 10);
+        // Returns a random integer from 1 to 10:
+        double random = Math.floor((Math.random() * 10) + 1);
+        double probability = p * 10;
 
-        String[] hat = new String[]{"cat", "cat", "rabbit", "cat", "cat", "cat", "cat", "cat", "rabbit", "cat"};
-
-        //mutation takes place when random number is from 0 to 8 inclusive (80% probability)
-        if (hat[random].equals("cat"))
+        //mutation takes place when random number is from (0 to  required probability) inclusive
+        if (random <= probability)
         {
             int lowIndex;
             int highIndex;
@@ -120,6 +119,7 @@ public class Queens
         }
 
         // END OF YOUR CODE
+
         return genotype;
     }
 
