@@ -54,8 +54,6 @@ public class Queens
         //mutation takes place when random number is from (0 to  required probability) inclusive
         if (random <= probability)
         {
-            int lowIndex;
-            int highIndex;
 
             //creates temporary array duplicate of genotype with one extra element at the end
             int tempArray[] = new int[genotype.length + 1];
@@ -65,56 +63,58 @@ public class Queens
             }
 
             //random index from 0 to 11
-            int secondAlleleIndex = (int) (Math.random() * 12);
-
-            //random index from 0 to 11
             int firstAlleleIndex = (int) (Math.random() * 12);
 
-            //ensure both indeces are not equal
+            //random index from 0 to 11
+            int secondAlleleIndex = (int) (Math.random() * 12);
+
+            //ensure both indexes are not equal
             while (firstAlleleIndex == secondAlleleIndex)
             {
-                firstAlleleIndex = (int) (Math.random() * 12);
+                secondAlleleIndex = (int) (Math.random() * 12);
             }
 
-            //determine the lower and higher indeces
-            if (firstAlleleIndex < secondAlleleIndex)
-            {
-                lowIndex = firstAlleleIndex;
-                highIndex = secondAlleleIndex;
-            }
-            else
-            {
-                lowIndex = secondAlleleIndex;
-                highIndex = firstAlleleIndex;
-            }
-
-            //loop n-times where n = (tempArray.length - (lowIndex+1)) to shift all elements after lowIndex to right.
-            //element right after lowIndex is = to element at lowIndex
-            for (int i = tempArray.length - 1; i > lowIndex; i--)
+            //loop n-times where n = (tempArray.length - (lowIndex+1)) to shift all elements after first Index to right.
+            //element right after first Index is = to element at first Index
+            for (int i = tempArray.length - 1; i > firstAlleleIndex; i--)
             {
                 tempArray[i] = tempArray[i - 1];
             }
 
-            //set element after lowIndex to element at highIndex (execute the mutation)
-            tempArray[lowIndex + 1] = genotype[highIndex];
+            //set element after first Index to element at second Index (execute the mutation)
+            tempArray[firstAlleleIndex + 1] = genotype[secondAlleleIndex];
 
-            //loop n-times where n = (tempArray.length - (highIndex+1)) to shift back all elements.
-            for (int i = highIndex + 1; i < tempArray.length; i++)
+            if (firstAlleleIndex < secondAlleleIndex)
             {
-                if (i + 1 == tempArray.length)
-                {
-                    tempArray[i] = 0;
-                }
-                else
-                {
-                    tempArray[i] = tempArray[i + 1];
-                }
+                tempArray[secondAlleleIndex + 1] = 0;
+            }
+            else
+            {
+                tempArray[secondAlleleIndex] = 0;
             }
 
+            int[] fenotype = new int[12];
+
+            int j = 0;
             //mutate genotype
+            for (int i = 0; i < tempArray.length; i++)
+            {
+                if (tempArray[i] != 0)
+                {
+                    if (i > 11)
+                    {
+                        fenotype[11] = tempArray[i];
+                    }
+                    else
+                    {
+                        fenotype[j] = tempArray[i];
+                    }
+                    j = j + 1;
+                }
+            }
             for (int i = 0; i < genotype.length; i++)
             {
-                genotype[i] = tempArray[i];
+                genotype[i] = fenotype[i];
             }
         }
 
